@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import Combine
 class LocalModel{
     static let shared = LocalModel()
     
@@ -70,13 +71,25 @@ class LocalModel{
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
-    func getAllCourses(){
-        addItem(course: Course(courseName: "ayman", courseCode: "", courseDescription: "", level: "", refreces: "", preRequest: ""))
+    func getAllCourses()->AnyPublisher<[Course],Never>{
+//        addItem(course: Course(courseName: "ayman", courseCode: "", courseDescription: "", level: "", refreces: "", preRequest: ""))
+        return 
         let featchRequest:NSFetchRequest<Item> = Item.fetchRequest()
         do{
-            try print(container.viewContext.fetch(featchRequest))
+             try container.viewContext.fetch(featchRequest).publisher.map{(item) -> [Course] in
+                
+                return Course(courseName: item.name!, courseCode: item.id!, courseDescription: item.courseDescription!, level: item.level!, refreces: item.refreces!, preRequest: item.prerequisite!)
+                
+            }
+             
+                
+            
+
         }catch{
             
         }
+    }
+    func s()->String{
+        return ""
     }
 }
