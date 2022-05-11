@@ -90,7 +90,6 @@ class LocalModel:BaseLocalModel{
                         return Course(courseName: item.name!, courseCode: item.id!, courseDescription: item.courseDescription!, level: item.level!, refreces: item.refreces!, preRequest: item.prerequisite!)
                         
                     }
-                    print(data.sequence)
                     promise(.success(data.sequence))
                 }catch{
                     promise(.failure(error))

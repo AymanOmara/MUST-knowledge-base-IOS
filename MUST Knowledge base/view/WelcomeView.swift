@@ -37,7 +37,7 @@ struct FacultyView:View{
     var body: some View{
         NavigationView{
             VStack{
-                Text("MUST Knowledge Base contains all the information about all faculties of the university for all Majors and different levels. Where the user can choose the college and then search for the majors, then the courses to know all the details of the courses such as the name of the course, prerequisites, level and know the course reference, which makes him familiar enough with the course.")
+                Text(LocalizedStringKey("introduction"))
                     .padding(.horizontal,5)
                 Spacer()
                 
