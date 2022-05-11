@@ -31,8 +31,8 @@ protocol FavoriteViewModelContracts:ObservableObject{
     func shouldAddCourseToFavorite(course:Course)
 }
 enum AlertContext{
-    static let exsitBefore = AlertItem(title: Text("Error"), body: Text("this courses has been added to the favorite before"), dissmissButton: .cancel())
-    static let addedSuccessfully = AlertItem(title: Text("Done"), body: Text("this courses has been added to the favorite"), dissmissButton: .cancel())
+    static let exsitBefore = AlertItem(title: Text(LocalizedStringKey("Error")), body: Text(LocalizedStringKey("isbefore")), dissmissButton: .cancel())
+    static let addedSuccessfully = AlertItem(title: Text(LocalizedStringKey("Done")), body: Text(LocalizedStringKey("addedd")), dissmissButton: .cancel())
 }
 struct AlertItem:Identifiable{
     var id = UUID()
