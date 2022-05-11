@@ -10,7 +10,7 @@ import SwiftUI
 struct MajorsView: View {
     var majors:[Major]
     var body: some View {
-        List(AllFaculties.initFaculties()[0].majors,id:\.id) { item in
+        List(majors,id:\.id) { item in
             NavigationLink(destination: HomeView(courses: item.courses)) {
                 StringListView(title: item.majorName)
                 

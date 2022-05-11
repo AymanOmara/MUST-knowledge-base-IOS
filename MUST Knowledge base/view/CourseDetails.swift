@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
-
+import Combine
 struct CourseDetails: View {
     
     var course:Course
     var preRequisite:[String]
     
+    
     var body: some View {
         VStack(alignment: .leading){
-            Header(courseName: course.courseName, courseCode: course.courseCode,courseLevel: course.level)
+            Header(course:course)
                 .padding([.leading,.top],5)
             Divider()
             
@@ -26,7 +27,7 @@ struct CourseDetails: View {
                     HStack(spacing:10){
                         
                         ForEach(0..<preRequisite.count) {index in
-                        
+                            
                             PrerequizstItem(name: preRequisite[index])
                         }
                         
@@ -38,22 +39,22 @@ struct CourseDetails: View {
             Spacer()
             
         }
-        .onAppear{
-            
-        }
+        
+        
+        
     }
 }
 struct Header:View{
-    @State private var isActive = false
-    var courseName:String
-    var courseCode:String
-    var courseLevel:String
+    var course:Course
+    @StateObject var viewModel = FavoriteViewModel()
+    //    @State private var isActive = false
+    
     var body: some View{
         HStack(alignment: .top){
             VStack(alignment:.leading){
-                Row(title: "Course Name", value: courseName)
-                Row(title: "Course Code", value: courseCode)
-                Row(title: "level", value: courseLevel)
+                Row(title: "Course Name", value: course.courseName)
+                Row(title: "Course Code", value: course.courseCode)
+                Row(title: "level", value: course.level)
             }
             Spacer()
             
@@ -61,7 +62,8 @@ struct Header:View{
                 Image(systemName: "suit.heart.fill")
                     .frame(width: 40, height: 40, alignment: .bottom)
                     .onTapGesture {
-                        isActive = true
+                        viewModel.shouldAddCourseToFavorite(course: course)
+                        //                        isActive = true
                     }
                 Image("must_logo")
                     .resizable()
@@ -72,11 +74,15 @@ struct Header:View{
             
             
         }
-        .alert("Hello", isPresented: $isActive) {
-            Button("Ok",role: .cancel){
-                isActive = false
-            }
+        .alert(item:$viewModel.alertItem){ alert in
+            Alert(title: alert.title, message: alert.body, dismissButton: alert.dissmissButton)
+            
         }
+        //        .alert("Hello", isPresented: $isActive) {
+        //            Button("Ok",role: .cancel){
+        //                isActive = false
+        //            }
+        //        }
     }
 }
 struct Row:View{

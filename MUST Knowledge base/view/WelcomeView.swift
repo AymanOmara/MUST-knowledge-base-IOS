@@ -25,10 +25,6 @@ struct WelcomeView: View {
                 }
             }
         }
-        .onAppear{
-            let localModel = LocalModel.shared
-            localModel.getAllCourses()
-        }
     }
         
 }

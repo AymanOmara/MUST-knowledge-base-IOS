@@ -22,6 +22,7 @@
 		4F85BE2A282A9EC9007760A0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F85BE29282A9EC9007760A0 /* HomeView.swift */; };
 		4F85BE2C282A9EF5007760A0 /* CourseDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F85BE2B282A9EF5007760A0 /* CourseDetails.swift */; };
 		4F85BE2E282A9FDC007760A0 /* LocalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F85BE2D282A9FDC007760A0 /* LocalManager.swift */; };
+		4FD90B12282BD8210065DBBF /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD90B11282BD8210065DBBF /* FavoriteViewModel.swift */; };
 		6587391A54669B7F9A19F132 /* Pods_MUST_Knowledge_base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE85B480570681B6B6FEC0B /* Pods_MUST_Knowledge_base.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		4F85BE29282A9EC9007760A0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4F85BE2B282A9EF5007760A0 /* CourseDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetails.swift; sourceTree = "<group>"; };
 		4F85BE2D282A9FDC007760A0 /* LocalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalManager.swift; sourceTree = "<group>"; };
+		4FD90B11282BD8210065DBBF /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		4F85BE02282A9C07007760A0 /* MUST Knowledge base */ = {
 			isa = PBXGroup;
 			children = (
+				4FD90B10282BD8030065DBBF /* ViewModel */,
 				4F85BE24282A9E6A007760A0 /* view */,
 				4F85BE1C282A9DA9007760A0 /* utalities */,
 				4F85BE19282A9D75007760A0 /* DTO */,
@@ -145,6 +148,14 @@
 				4F85BE2B282A9EF5007760A0 /* CourseDetails.swift */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		4FD90B10282BD8030065DBBF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4FD90B11282BD8210065DBBF /* FavoriteViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B4D4EB21E334E518CA9BF04B /* Pods */ = {
@@ -283,6 +294,7 @@
 				4F85BE04282A9C07007760A0 /* MUST_Knowledge_baseApp.swift in Sources */,
 				4F85BE18282A9D5E007760A0 /* Faculties.swift in Sources */,
 				4F85BE2E282A9FDC007760A0 /* LocalManager.swift in Sources */,
+				4FD90B12282BD8210065DBBF /* FavoriteViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
