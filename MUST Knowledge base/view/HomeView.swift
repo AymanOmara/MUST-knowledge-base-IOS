@@ -30,10 +30,12 @@ struct TabBarView:View{
 
 
 struct HomeView: View {
+    @StateObject var viewModel = FavoriteViewModel()
     @State var dark = false
     @State var show = false
     var courses:[Course]
     var body: some View {
+        
         
         let drag = DragGesture()
             .onEnded { _ in
@@ -42,6 +44,7 @@ struct HomeView: View {
                 }
                 
             }
+        
         return  ZStack(alignment: .leading){
             
             
@@ -75,34 +78,16 @@ struct HomeView: View {
                         NavigationLink(item.courseName, destination: CourseDetails(course: item, preRequisite: item.preRequest.components(separatedBy: ",")),isActive: $dark)
                             .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
                                 Button(role: .destructive, action: {
-                                    
-//                                    action = .edit    // specific action
-                                    //isActive = false
-//                                    viewModel.removeCourse(course: item)
+                                    viewModel.shouldAddCourseToFavorite(course: item)
                                 } ) {
                                     
-//                                    Color.green
                                     Label("Add", systemImage: "plus")
-//                                    background(Color.green)
                                     
                                 }.tint(Color.green)
                             })
-                            
-//                        {
-                            
-//                            .swipeActions(edge: .leading, allowsFullSwipe: true, content: {
-//                                Button(role: .destructive, action: {
-//                                    action = .edit    // specific action
-//                                    //isActive = false
-//                                    viewModel.removeCourse(course: item)
-//                                } ) {
-//                                    Label("Delete", systemImage: "trash")
-//                                }
-//                            })
-//                            StringListView(title: item.courseName)
-//                        }
-                        .navigationTitle("Courses")
-                        .navigationBarTitleDisplayMode(.inline)
+                        
+                            .navigationTitle("Courses")
+                            .navigationBarTitleDisplayMode(.inline)
                     }
                     
                     Spacer()
@@ -122,7 +107,11 @@ struct HomeView: View {
             
             
         }
-//        .gesture(drag)
+        //        .gesture(drag)
+        .alert(item:$viewModel.alertItem){ alert in
+            Alert(title: alert.title, message: alert.body, dismissButton: alert.dissmissButton)
+            
+        }
     }
 }
 

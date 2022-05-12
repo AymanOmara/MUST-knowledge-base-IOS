@@ -47,7 +47,6 @@ struct CourseDetails: View {
 struct Header:View{
     var course:Course
     @StateObject var viewModel = FavoriteViewModel()
-    //    @State private var isActive = false
     
     var body: some View{
         HStack(alignment: .top){
