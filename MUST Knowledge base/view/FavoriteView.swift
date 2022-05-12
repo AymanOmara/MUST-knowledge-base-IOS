@@ -11,28 +11,11 @@ struct FavoriteView: View {
     @StateObject private var viewModel = FavoriteViewModel()
     var body: some View {
         List(viewModel.courses,id:\.id) { item in
-            StringListView(title: item.courseName)
-                .swipeActions(edge: .leading, allowsFullSwipe: true, content: {
-                    Button(role: .destructive, action: {
-//                        viewModel.courses.remove(at: 1)
-                        //viewModel.removeCourse(course: item)
-                        viewModel.removeCourse(course: item)
-                    } ) {
-                      Label("Delete", systemImage: "trash")
-                    }
-                })
-                
-//            NavigationLink(destination: CourseDetails(course: item, preRequisite: item.preRequest.components(separatedBy: ","))) {
-//
-//
-//            }
-            .navigationTitle("Courses")
-            .navigationBarTitleDisplayMode(.inline)
+            FavoriteCell(viewModel: viewModel, item: item)
             
-        
-            
+                .navigationTitle("Courses")
+                .navigationBarTitleDisplayMode(.inline)
         }
-        
         .onAppear{
             viewModel.getAllCourses()
         }
@@ -43,4 +26,36 @@ struct FavoriteView_Previews: PreviewProvider {
     static var previews: some View {
         FavoriteView()
     }
+}
+struct FavoriteCell:View{
+    enum Action {
+        case view
+        case edit
+    }
+    @State private var isActive = false
+    @State private var action: Action?
+    
+    var viewModel:FavoriteViewModel
+    var item:Course
+    var body: some View{
+        NavigationLink(item.courseName, destination: CourseDetails(course: item, preRequisite: item.preRequest.components(separatedBy: ",")), isActive: $isActive)
+            .swipeActions(edge: .leading, allowsFullSwipe: true, content: {
+                Button(role: .destructive, action: {
+                    action = .edit    // specific action
+                    //isActive = false
+                    viewModel.removeCourse(course: item)
+                } ) {
+                    Label("Delete", systemImage: "trash")
+                }
+            })
+        
+            .onChange(of: isActive) {
+                if !$0 {
+                    action = nil  // reset back
+                }
+            }
+        
+        
+    }
+
 }

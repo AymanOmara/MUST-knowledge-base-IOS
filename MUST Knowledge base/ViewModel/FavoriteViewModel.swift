@@ -12,6 +12,7 @@ final class FavoriteViewModel:ObservableObject,FavoriteViewModelContracts{
     var localModel: LocalModel = LocalModel.shared
     @Published var courses:[Course] = []
     @Published var alertItem:AlertItem?
+    @Published var isEmpty:Bool = false
     var subscriber:Set<AnyCancellable> = []
     func shouldAddCourseToFavorite(course:Course){
         localModel.shouldAddItem(course: course).sink {[weak self] value in
@@ -37,6 +38,7 @@ final class FavoriteViewModel:ObservableObject,FavoriteViewModelContracts{
             guard let self = self else{return}
             if let values = values{
                 self.courses = values
+                self.isEmpty = values.isEmpty
             }else{
                 
             }

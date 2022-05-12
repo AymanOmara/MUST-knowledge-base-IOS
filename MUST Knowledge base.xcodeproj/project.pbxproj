@@ -26,6 +26,7 @@
 		4FD90B15282BF4FF0065DBBF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD90B17282BF4FF0065DBBF /* Localizable.strings */; };
 		4FE636D4282D08E000909455 /* StringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE636D3282D08E000909455 /* StringCell.swift */; };
 		4FE636D6282D0DB200909455 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE636D5282D0DB200909455 /* FavoriteView.swift */; };
+		4FE636D8282D285100909455 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FE636D7282D285100909455 /* empty.json */; };
 		6587391A54669B7F9A19F132 /* Pods_MUST_Knowledge_base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE85B480570681B6B6FEC0B /* Pods_MUST_Knowledge_base.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		4FD90B18282BF5040065DBBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4FE636D3282D08E000909455 /* StringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCell.swift; sourceTree = "<group>"; };
 		4FE636D5282D0DB200909455 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		4FE636D7282D285100909455 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 		4F85BE1C282A9DA9007760A0 /* utalities */ = {
 			isa = PBXGroup;
 			children = (
+				4FE636D7282D285100909455 /* empty.json */,
 				4F85BE1D282A9DCA007760A0 /* LottieView.swift */,
 				4F85BE1F282A9E15007760A0 /* book.json */,
 			);
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F85BE0B282A9C08007760A0 /* Preview Assets.xcassets in Resources */,
+				4FE636D8282D285100909455 /* empty.json in Resources */,
 				4FD90B15282BF4FF0065DBBF /* Localizable.strings in Resources */,
 				4F85BE08282A9C08007760A0 /* Assets.xcassets in Resources */,
 				4F85BE20282A9E15007760A0 /* book.json in Resources */,

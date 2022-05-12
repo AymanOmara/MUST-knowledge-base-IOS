@@ -72,9 +72,35 @@ struct HomeView: View {
                     Spacer()
                     List(courses,id:\.id) { item in
                         
-                        NavigationLink(destination: CourseDetails(course: item, preRequisite: item.preRequest.components(separatedBy: ","))) {
-                            StringListView(title: item.courseName)
-                        }
+                        NavigationLink(item.courseName, destination: CourseDetails(course: item, preRequisite: item.preRequest.components(separatedBy: ",")),isActive: $dark)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
+                                Button(role: .destructive, action: {
+                                    
+//                                    action = .edit    // specific action
+                                    //isActive = false
+//                                    viewModel.removeCourse(course: item)
+                                } ) {
+                                    
+//                                    Color.green
+                                    Label("Add", systemImage: "plus")
+//                                    background(Color.green)
+                                    
+                                }.tint(Color.green)
+                            })
+                            
+//                        {
+                            
+//                            .swipeActions(edge: .leading, allowsFullSwipe: true, content: {
+//                                Button(role: .destructive, action: {
+//                                    action = .edit    // specific action
+//                                    //isActive = false
+//                                    viewModel.removeCourse(course: item)
+//                                } ) {
+//                                    Label("Delete", systemImage: "trash")
+//                                }
+//                            })
+//                            StringListView(title: item.courseName)
+//                        }
                         .navigationTitle("Courses")
                         .navigationBarTitleDisplayMode(.inline)
                     }
@@ -96,7 +122,7 @@ struct HomeView: View {
             
             
         }
-        .gesture(drag)
+//        .gesture(drag)
     }
 }
 
