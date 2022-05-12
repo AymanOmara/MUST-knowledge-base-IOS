@@ -24,11 +24,40 @@ final class FavoriteViewModel:ObservableObject,FavoriteViewModelContracts{
             }
         }.store(in: &subscriber)
     }
+    func getAllCourses() {
+        localModel.getAllCourses().sink {completion in
+            
+            switch completion{
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .finished:
+                break
+            }
+        } receiveValue: {[weak self] values in
+            guard let self = self else{return}
+            if let values = values{
+                self.courses = values
+            }else{
+                
+            }
+            
+        }.store(in: &subscriber)
+        
+    }
+    func removeCourse(course:Course){
+        let index = courses.firstIndex(where: {it in course.courseCode == it.courseCode})!
+        courses.remove(at: index)
+
+        localModel.removeCourseByID(courseIndex: index)
+
+        getAllCourses()
+    }
     
 }
 protocol FavoriteViewModelContracts:ObservableObject{
     var localModel:LocalModel{get}
     func shouldAddCourseToFavorite(course:Course)
+    func getAllCourses()
 }
 enum AlertContext{
     static let exsitBefore = AlertItem(title: Text(LocalizedStringKey("Error")), body: Text(LocalizedStringKey("isbefore")), dissmissButton: .cancel())

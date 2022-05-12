@@ -11,7 +11,7 @@ struct MajorsView: View {
     var majors:[Major]
     var body: some View {
         List(majors,id:\.id) { item in
-            NavigationLink(destination: HomeView(courses: item.courses)) {
+            NavigationLink(destination: TabBarView(courses: item.courses)) {
                 StringListView(title: item.majorName)
                 
             }
@@ -23,13 +23,5 @@ struct MajorsView: View {
 struct MajorsView_Previews: PreviewProvider {
     static var previews: some View {
         MajorsView(majors: AllFaculties.initFaculties()[0].majors)
-    }
-}
-struct StringListView:View{
-    var title:String
-    var body: some View{
-        HStack{
-            Text(title)
-        }
     }
 }

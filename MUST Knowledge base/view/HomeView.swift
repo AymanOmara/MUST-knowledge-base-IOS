@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+struct TabBarView:View{
+    var courses:[Course]
+    var body: some View{
+        TabView{
+            HomeView(courses: courses)
+                .tabItem {
+                    Image(systemName: "house")
+                    
+                    Text(LocalizedStringKey("Home"))
+                }
+            
+            FavoriteView()
+                .tabItem {
+                    Image(systemName: "heart")
+                    
+                    Text(LocalizedStringKey("Favorite"))
+                }
+        }
+    }
+}
+
+
 struct HomeView: View {
     @State var dark = false
     @State var show = false
@@ -92,9 +114,9 @@ struct Menu:View{
         VStack{
             HStack{
                 Button(action: {
-                   
+                    
                     withAnimation(.default){
-                        self.show.toggle()
+                        show.toggle()
                     }
                 }){
                     Image(systemName: "chevron.backward")
@@ -106,7 +128,7 @@ struct Menu:View{
                 Spacer()
                 
             }
-
+            
             Image("must_logo")
                 .resizable()
                 .frame(width: 100, height: 100)
@@ -122,7 +144,7 @@ struct Menu:View{
                     Spacer()
                     Text("Dark mode")
                     
-//                    Spacer()
+                    //                    Spacer()
                     
                 }
                 Toggle("",isOn: $dark)

@@ -100,6 +100,68 @@ class LocalModel:BaseLocalModel{
         
         
     }
+    func removeCourseByID(courseIndex:Int){
+        let featchRequest:NSFetchRequest<Item> = Item.fetchRequest()
+        do{
+           let v =  try container.viewContext.fetch(featchRequest)
+            for (index, element) in v.enumerated(){
+                if index == courseIndex{
+                    container.viewContext.delete(element)
+                    do {
+                        try container.viewContext.save()
+                    } catch {
+                        // Replace this implementation with code to handle the error appropriately.
+                        // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                        let nsError = error as NSError
+                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                    }
+                }
+            }
+            
+        }catch{
+            
+        }
+//        for (index, element) in container.viewContext.fetch(featchRequest.enumerated()) {}
+//        container.viewContext.fetch(featchRequest).map { item in
+//            c
+//        }
+//        container.viewContext.fetch(featchRequest).remove(at: index)
+//        container.viewContext.delete(<#T##object: NSManagedObject##NSManagedObject#>)
+//        featchRequest
+//        getAllCourses().sink { _ in
+//
+//        } receiveValue: { courses in
+//            var v = courses?.firstIndex(where: { it in
+//                it.courseCode == course.courseCode
+//            })
+//
+//
+//        }.store(in: &subscriber)
+
+//        let newItem = Item(context: container.viewContext)
+//        newItem.name = course.courseName
+//        newItem.id = course.courseCode
+//        newItem.courseDescription = course.courseDescription
+//        newItem.prerequisite = course.preRequest
+//        newItem.refreces = course.refreces
+//        newItem.level = course.level
+//        container.viewContext.delete(Item[1])
+//        container.viewContext.delete(newItem)
+        //container.viewContext
+        do {
+            try container.viewContext.save()
+        } catch {
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+    }
+//    func unfavorite(_ item: Item) {
+//        viewContext.delete(item)
+//        try? viewContext.save()
+//    }
+    
 }
 protocol BaseLocalModel{
     func getAllCourses()-> AnyPublisher<[Course]?, Error>
