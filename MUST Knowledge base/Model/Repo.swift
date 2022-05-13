@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 class Repo {
-    func getDataFromURL(URL: URL,complition:@escaping(Double?)->Void) {
+    func getDataFromURL(URL: URL,complition:@escaping(Data?)->Void) {
         
         let cancellable: AnyCancellable?
         
@@ -18,25 +18,21 @@ class Repo {
         request.httpMethod = "GET"
         
         let task = session.downloadTask(with: request)	{ data ,response , error in
-            print((response as? HTTPURLResponse)?.statusCode)
-         
+            if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+                print("Success: \(statusCode)")
+//                complition(response)
+            }
+            
+            
         }
-        complition(task.progress.fractionCompleted)
+//        let observation = task.progress.observe(\.fractionCompleted) { progress, _ in
+//            complition(progress.fractionCompleted)
+////          print(progress.fractionCompleted)
+//        }
+        
         task.resume()
         
-//        cancellable = session.dataTaskPublisher(for: request)
-//
-//            .tryMap { element -> Data in
-//                guard let httpResponse = element.response as? HTTPURLResponse,
-//                      httpResponse.statusCode == 200 else {
-//                    throw URLError(.badServerResponse)
-//                }
-//                return element.data
-//            }.eraseToAnyPublisher()
-//
-//            .sink(receiveCompletion: {comp in}, receiveValue: { date in
-//              print(date)
-//            })
+
         
     }
 }

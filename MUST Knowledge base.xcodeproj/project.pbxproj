@@ -27,8 +27,9 @@
 		4FE636D8282D285100909455 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FE636D7282D285100909455 /* empty.json */; };
 		6587391A54669B7F9A19F132 /* Pods_MUST_Knowledge_base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AE85B480570681B6B6FEC0B /* Pods_MUST_Knowledge_base.framework */; };
 		EDB98FD4282EB080007C6A65 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB98FD3282EB080007C6A65 /* AlertItem.swift */; };
-		EDB98FD7282EC2A6007C6A65 /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB98FD6282EC2A6007C6A65 /* PDFView.swift */; };
+		EDB98FD7282EC2A6007C6A65 /* MYpdf.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB98FD6282EC2A6007C6A65 /* MYpdf.swift */; };
 		EDB98FD9282EC4B9007C6A65 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB98FD8282EC4B9007C6A65 /* Repo.swift */; };
+		EDB98FDB282ECF35007C6A65 /* PDFKitRepresentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDB98FDA282ECF35007C6A65 /* PDFKitRepresentedView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,8 +57,9 @@
 		4FE636D5282D0DB200909455 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		4FE636D7282D285100909455 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		EDB98FD3282EB080007C6A65 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
-		EDB98FD6282EC2A6007C6A65 /* PDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFView.swift; sourceTree = "<group>"; };
+		EDB98FD6282EC2A6007C6A65 /* MYpdf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYpdf.swift; sourceTree = "<group>"; };
 		EDB98FD8282EC4B9007C6A65 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
+		EDB98FDA282ECF35007C6A65 /* PDFKitRepresentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFKitRepresentedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				4FE636D7282D285100909455 /* empty.json */,
 				4F85BE1D282A9DCA007760A0 /* LottieView.swift */,
 				4F85BE1F282A9E15007760A0 /* book.json */,
+				EDB98FDA282ECF35007C6A65 /* PDFKitRepresentedView.swift */,
 			);
 			path = utalities;
 			sourceTree = "<group>";
@@ -161,7 +164,7 @@
 				4F85BE2B282A9EF5007760A0 /* CourseDetails.swift */,
 				4FE636D3282D08E000909455 /* StringCell.swift */,
 				4FE636D5282D0DB200909455 /* FavoriteView.swift */,
-				EDB98FD6282EC2A6007C6A65 /* PDFView.swift */,
+				EDB98FD6282EC2A6007C6A65 /* MYpdf.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -312,7 +315,7 @@
 				4F85BE10282A9C08007760A0 /* MUST_Knowledge_base.xcdatamodeld in Sources */,
 				EDB98FD4282EB080007C6A65 /* AlertItem.swift in Sources */,
 				4F85BE2C282A9EF5007760A0 /* CourseDetails.swift in Sources */,
-				EDB98FD7282EC2A6007C6A65 /* PDFView.swift in Sources */,
+				EDB98FD7282EC2A6007C6A65 /* MYpdf.swift in Sources */,
 				4F85BE28282A9EAE007760A0 /* MajorsView.swift in Sources */,
 				4F85BE2A282A9EC9007760A0 /* HomeView.swift in Sources */,
 				4F85BE1B282A9D8A007760A0 /* Faculty.swift in Sources */,
@@ -320,6 +323,7 @@
 				4F85BE1E282A9DCA007760A0 /* LottieView.swift in Sources */,
 				4F85BE04282A9C07007760A0 /* MUST_Knowledge_baseApp.swift in Sources */,
 				4F85BE18282A9D5E007760A0 /* Faculties.swift in Sources */,
+				EDB98FDB282ECF35007C6A65 /* PDFKitRepresentedView.swift in Sources */,
 				EDB98FD9282EC4B9007C6A65 /* Repo.swift in Sources */,
 				4F85BE2E282A9FDC007760A0 /* LocalManager.swift in Sources */,
 				4FE636D4282D08E000909455 /* StringCell.swift in Sources */,
