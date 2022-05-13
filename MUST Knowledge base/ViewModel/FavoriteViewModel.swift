@@ -65,9 +65,3 @@ enum AlertContext{
     static let exsitBefore = AlertItem(title: Text(LocalizedStringKey("Error")), body: Text(LocalizedStringKey("isbefore")), dissmissButton: .cancel())
     static let addedSuccessfully = AlertItem(title: Text(LocalizedStringKey("Done")), body: Text(LocalizedStringKey("addedd")), dissmissButton: .cancel())
 }
-struct AlertItem:Identifiable{
-    var id = UUID()
-    var title:Text
-    var body:Text
-    var dissmissButton:Alert.Button?
-}

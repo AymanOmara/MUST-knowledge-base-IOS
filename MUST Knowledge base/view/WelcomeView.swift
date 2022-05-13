@@ -26,7 +26,7 @@ struct WelcomeView: View {
             }
         }
     }
-        
+    
 }
 struct FacultyView:View{
     var faculties:[Faclty]
@@ -45,7 +45,7 @@ struct FacultyView:View{
                 
                 ScrollView{
                     
-                    LazyVGrid(columns: columns) {
+                    LazyVGrid(columns: columns,spacing: 10) {
                         ForEach(0..<faculties.count){ index in
                             FacultyCell(faculty: Faclty(imageName: faculties[index].imageName, facultyName: faculties[index].facultyName, majors: faculties[index].majors))
                             
@@ -76,12 +76,14 @@ struct FacultyCell:View{
                 .resizable()
                 .frame(height: 120)
             Text(faculty.facultyName)
-            
-
         }
+        .background(Color.white)
+        .cornerRadius(8)
+        .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 2)
+        .padding(.horizontal,2)
         .background(
             NavigationLink(
-                
+
                 destination: MajorsView(majors: faculty.majors),isActive: $isActive, label: {
                     EmptyView()
                 }

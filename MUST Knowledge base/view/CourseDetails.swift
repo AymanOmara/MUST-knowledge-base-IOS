@@ -14,13 +14,14 @@ struct CourseDetails: View {
     
     
     var body: some View {
-        VStack(alignment: .leading){
+        VStack(alignment: .center){
             Header(course:course)
                 .padding([.leading,.top],5)
             Divider()
             
             HStack{
-                Text("Pre req")
+                Text(LocalizedStringKey("prerequisite"))
+                    .padding(.leading,5)
                 
                 ScrollView(.horizontal,showsIndicators: false){
                     
@@ -35,6 +36,19 @@ struct CourseDetails: View {
                 }
             }
             Divider()
+
+                Text(LocalizedStringKey("courseDescription"))
+                    .padding(.leading)
+            
+            CourseDescription(courseDescription: course.courseDescription)
+            Divider()
+            NavigationLink(LocalizedStringKey("references"), destination: PDFView(url: course.refreces))
+                .cornerRadius(20)
+                .foregroundColor(Color.white)
+                .frame(maxWidth: .infinity,maxHeight: 30)
+                .background(Color.blue)
+                .padding(.horizontal)
+                
             
             Spacer()
             
@@ -42,6 +56,18 @@ struct CourseDetails: View {
         
         
         
+    }
+}
+struct CourseDescription:View{
+    var courseDescription:String
+    var body: some View{
+        Text(courseDescription)
+            .cornerRadius(10)
+            .padding(.horizontal,8)
+            .padding(.vertical,10)
+            .background(.white)
+            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 2)
+            
     }
 }
 struct Header:View{
@@ -51,24 +77,26 @@ struct Header:View{
     var body: some View{
         HStack(alignment: .top){
             VStack(alignment:.leading){
-                Row(title: "Course Name", value: course.courseName)
-                Row(title: "Course Code", value: course.courseCode)
-                Row(title: "level", value: course.level)
+                Text(course.courseName)
+                Text(course.courseCode)
+                Text("Level \(course.level)")
+
             }
             Spacer()
             
             HStack(alignment:.bottom){
                 Image(systemName: "suit.heart.fill")
                     .frame(width: 40, height: 40, alignment: .bottom)
+                    .padding(.bottom,0)
                     .onTapGesture {
                         viewModel.shouldAddCourseToFavorite(course: course)
-                        //                        isActive = true
                     }
                 Image("must_logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 130, height: 130)
                     .padding(.horizontal,0)
+                    .padding(.bottom,0)
             }
             
             
@@ -76,23 +104,6 @@ struct Header:View{
         .alert(item:$viewModel.alertItem){ alert in
             Alert(title: alert.title, message: alert.body, dismissButton: alert.dissmissButton)
             
-        }
-        //        .alert("Hello", isPresented: $isActive) {
-        //            Button("Ok",role: .cancel){
-        //                isActive = false
-        //            }
-        //        }
-    }
-}
-struct Row:View{
-    var title,value:String
-    var body: some View{
-        HStack(alignment: .top){
-            Text(title)
-                .font(.caption2)
-            Text(value)
-                .font(.caption2)
-            Spacer()
         }
     }
 }
@@ -109,10 +120,9 @@ struct PrerequizstItem:View{
             Section{
                 Text(name)
                     .padding(10)
-                    .background(.red)
+                    .background(.white)
                     .cornerRadius(10)
-                    .shadow(color: Color.black.opacity(0.6), radius: 10, x: 6, y: 6)
-                    .foregroundColor(Color.white)
+                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 2)
             }
         }
     }

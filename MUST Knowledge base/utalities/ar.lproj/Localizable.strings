@@ -11,4 +11,7 @@
 "isbefore"="تمت إضافة هذه الدورة إلى المفضلة من قبل";
 "Done"="تم";
 "Home"="الرئيسية";
-"Favorite"="مفضل";
+"Favorite"="المفضله";
+"prerequisite"="المواد المعتمده";
+"courseDescription"="وصف الماده";
+"references"="مراجع";
