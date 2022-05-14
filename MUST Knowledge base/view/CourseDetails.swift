@@ -27,9 +27,11 @@ struct CourseDetails: View {
                     
                     HStack(spacing:10){
                         
-                        ForEach(0..<preRequisite.count) {index in
+                        ForEach(preRequisite) {item in
                             
-                            PrerequizstItem(name: preRequisite[index])
+                            PrerequizstItem(name: item)
+                                .padding(.vertical,10)
+                                .padding(.leading,3)
                         }
                         
                     }
@@ -125,5 +127,10 @@ struct PrerequizstItem:View{
                     .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 2)
             }
         }
+    }
+}
+extension String:Identifiable{
+    public var id:UUID{
+        return UUID()
     }
 }

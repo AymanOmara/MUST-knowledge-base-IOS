@@ -10,11 +10,11 @@ import SwiftUI
 struct TabBarView:View{
     var courses:[Course]
     var body: some View{
+        
         TabView{
             HomeView(courses: courses)
                 .tabItem {
                     Image(systemName: "house")
-                    
                     Text(LocalizedStringKey("Home"))
                 }
             
@@ -31,52 +31,25 @@ struct TabBarView:View{
 
 struct HomeView: View {
     @StateObject var viewModel = FavoriteViewModel()
-    @State var dark = false
-    @State var show = false
     var courses:[Course]
     var body: some View {
-        
-        return  ZStack(alignment: .leading){
+        List(courses,id:\.id) { item in
             
-            
-            GeometryReader{_ in
-                VStack{
-
-                    List(courses,id:\.id) { item in
+            NavigationLink(item.courseName, destination: CourseDetails(course: item, preRequisite: item.preRequest.components(separatedBy: ",")))
+                .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
+                    Button(role: .destructive, action: {
+                        viewModel.shouldAddCourseToFavorite(course: item)
+                    } ) {
                         
-                        NavigationLink(item.courseName, destination: CourseDetails(course: item, preRequisite: item.preRequest.components(separatedBy: ",")),isActive: $dark)
-                            .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
-                                Button(role: .destructive, action: {
-                                    viewModel.shouldAddCourseToFavorite(course: item)
-                                } ) {
-                                    
-                                    Label("Add", systemImage: "plus")
-                                    
-                                }.tint(Color.green)
-                            })
+                        Label("Add", systemImage: "plus")
                         
-                            .navigationTitle("Courses")
-                            .navigationBarTitleDisplayMode(.inline)
-                    }
-                    
-                    Spacer()
-                    
-                }
-            }
+                    }.tint(Color.green)
+                })
             
-            
-//            HStack{
-//                NavigationMenu(dark: $dark, show: $show)
-//                    .preferredColorScheme(dark ? .dark : .light)
-//                    .offset(x:self.show ? 0 : -UIScreen.main.bounds.width / 1.5)
-//                Spacer(minLength: 0)
-//
-//            }
-            .background(Color.primary.opacity(self.show ? (self.dark ? 0.05 : 0.2): 0).edgesIgnoringSafeArea(.all))
-            
-            
+                .navigationTitle("Courses")
+                .navigationBarTitleDisplayMode(.inline)
         }
-        //        .gesture(drag)
+
         .alert(item:$viewModel.alertItem){ alert in
             Alert(title: alert.title, message: alert.body, dismissButton: alert.dissmissButton)
             
@@ -90,89 +63,89 @@ struct HomeView_Previews: PreviewProvider {
         HomeView(courses: AllFaculties.initFaculties()[0].majors[0].courses)
     }
 }
-struct NavigationMenu:View{
-    @Binding var dark: Bool
-    @Binding var show: Bool
-    var  body: some View{
-        
-        VStack{
-            HStack{
-                Button(action: {
-                    
-                    withAnimation(.default){
-                        show.toggle()
-                    }
-                }){
-                    Image(systemName: "chevron.backward")
-                        .resizable()
-                        .frame(width: 12, height: 20)
-                    
-                    
-                }
-                Spacer()
-                
-            }
-            
-            Image("must_logo")
-                .resizable()
-                .frame(width: 100, height: 100)
-            
-            HStack(spacing:10){
-                Button(action: {
-                    dark.toggle()
-                    UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = self.dark ? .dark : .light
-                }) {
-                    
-                    Image(systemName: "moon.fill")
-                        .font(.title)
-                    Spacer()
-                    Text("Dark mode")
-                    
-
-                    
-                }
-                Toggle("",isOn: $dark)
-                    .frame(width: 60)
-                    .padding(0)
-                    .onTapGesture {
-                        dark.toggle()
-                    }
-                
-            }
-            HStack(spacing:10){
-                Button(action: {}){
-                    Image(systemName: "globe.badge.chevron.backward")
-                        .font(.title)
-                    
-                    Text("change language")
-                    Spacer()
-                }
-                
-            }.padding(.top,10)
-            
-            Divider()
-            Group{
-                Button(action: {}) {
-                    HStack(spacing:22){
-                        Image("image")
-                            .resizable()
-                            .frame(width: 25, height: 28)
-                        
-                        Text("chats")
-                        Spacer()
-                    }
-                }
-            }
-            Spacer()
-        }
-        .padding()
-        .foregroundColor(.primary)
-        .padding(.horizontal,20)
-        .padding([.top],25)
-        .frame(width: UIScreen.main.bounds.width / 1.5)
-        .background((self.dark ? Color.black : Color.white  ))
-        .overlay(Rectangle().stroke(Color.primary.opacity(0.2),lineWidth: 2).shadow( radius: 3)).edgesIgnoringSafeArea(.all)
-        
-    }
-    
-}
+//struct NavigationMenu:View{
+//    @Binding var dark: Bool
+//    @Binding var show: Bool
+//    var  body: some View{
+//
+//        VStack{
+//            HStack{
+//                Button(action: {
+//
+//                    withAnimation(.default){
+//                        show.toggle()
+//                    }
+//                }){
+//                    Image(systemName: "chevron.backward")
+//                        .resizable()
+//                        .frame(width: 12, height: 20)
+//
+//
+//                }
+//                Spacer()
+//
+//            }
+//
+//            Image("must_logo")
+//                .resizable()
+//                .frame(width: 100, height: 100)
+//
+//            HStack(spacing:10){
+//                Button(action: {
+//                    dark.toggle()
+//                    UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = self.dark ? .dark : .light
+//                }) {
+//
+//                    Image(systemName: "moon.fill")
+//                        .font(.title)
+//                    Spacer()
+//                    Text("Dark mode")
+//
+//
+//
+//                }
+//                Toggle("",isOn: $dark)
+//                    .frame(width: 60)
+//                    .padding(0)
+//                    .onTapGesture {
+//                        dark.toggle()
+//                    }
+//
+//            }
+//            HStack(spacing:10){
+//                Button(action: {}){
+//                    Image(systemName: "globe.badge.chevron.backward")
+//                        .font(.title)
+//
+//                    Text("change language")
+//                    Spacer()
+//                }
+//
+//            }.padding(.top,10)
+//
+//            Divider()
+//            Group{
+//                Button(action: {}) {
+//                    HStack(spacing:22){
+//                        Image("image")
+//                            .resizable()
+//                            .frame(width: 25, height: 28)
+//
+//                        Text("chats")
+//                        Spacer()
+//                    }
+//                }
+//            }
+//            Spacer()
+//        }
+//        .padding()
+//        .foregroundColor(.primary)
+//        .padding(.horizontal,20)
+//        .padding([.top],25)
+//        .frame(width: UIScreen.main.bounds.width / 1.5)
+//        .background((self.dark ? Color.black : Color.white  ))
+//        .overlay(Rectangle().stroke(Color.primary.opacity(0.2),lineWidth: 2).shadow( radius: 3)).edgesIgnoringSafeArea(.all)
+//
+//    }
+//
+//}

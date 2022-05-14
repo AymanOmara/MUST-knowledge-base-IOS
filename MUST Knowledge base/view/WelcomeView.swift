@@ -46,12 +46,10 @@ struct FacultyView:View{
                 ScrollView{
                     
                     LazyVGrid(columns: columns,spacing: 10) {
-                        ForEach(0..<faculties.count){ index in
-                            FacultyCell(faculty: Faclty(imageName: faculties[index].imageName, facultyName: faculties[index].facultyName, majors: faculties[index].majors))
-                            
+                        ForEach(faculties){ faculty in
+                            FacultyCell(faculty: faculty)
                         }
-                        .padding(.horizontal, 5)
-                    }
+                    }.padding(.horizontal, 5)
                 }
             }
         }

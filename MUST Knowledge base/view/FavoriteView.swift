@@ -8,28 +8,33 @@
 import SwiftUI
 
 struct FavoriteView: View {
-    @StateObject private var viewModel = FavoriteViewModel()
-    @State var isEmpty = false
-    
+    @ObservedObject private var viewModel = FavoriteViewModel()
+//    @State private var isAnimated = false
     var body: some View {
-        if isEmpty{
-            LottieView(fileName: "empty")
+        ZStack{
+            if viewModel.isEmpty!{
+                LottieView(fileName: "empty")
                 .frame(width: 300, height: 300, alignment: .center)
-        }else{
-            List(viewModel.courses,id:\.id) { item in
-                FavoriteCell(viewModel: viewModel, item: item)
-                
-                    .navigationTitle("Courses")
-                    .navigationBarTitleDisplayMode(.inline)
-            }
-            .onAppear{
-                viewModel.getAllCourses()
+
+
+            }else{
+                List(viewModel.courses,id:\.id) { item in
+                    FavoriteCell(viewModel: viewModel, item: item)
+                    
+                        .navigationTitle("Courses")
+                        .navigationBarTitleDisplayMode(.inline)
+                }
             }
         }
+        .onAppear{
+            viewModel.getAllCourses()
+//            isAnimated =  viewModel.isEmpty!
+        }
 
-        
+
 
     }
+        
 }
 
 struct FavoriteView_Previews: PreviewProvider {

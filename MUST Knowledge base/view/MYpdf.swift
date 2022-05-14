@@ -11,16 +11,22 @@ struct MYpdf: View {
     var url:String
     var repo = Repo()
     @State var data:Data?
+    @State var isDone = false
     var body: some View {
-        PDFKitRepresentedView(data!)
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .onAppear{
-                print(url)
-                repo.getDataFromURL(URL: URL(string: url)!, complition: { progress in
-//                    print(progress)
-                    
-                })
+        ZStack{
+            if isDone{
+                PDFKitRepresentedView(data!)
+            }else{
+                ProgressView()
             }
+            
+        }.onAppear{
+            print(url)
+            repo.getDataFromURL(url: URL(string: url)!, complition: { progress in
+                self.data = progress
+                self.isDone = true
+            })
+        }
     }
         
 }
