@@ -24,6 +24,11 @@ struct TabBarView:View{
                     
                     Text(LocalizedStringKey("Favorite"))
                 }
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gearshape")
+                    Text(LocalizedStringKey("settings"))
+                }
         }
     }
 }

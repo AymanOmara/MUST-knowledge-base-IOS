@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MYpdf: View {
+struct ReferenceView: View {
     var url:String
     var repo = Repo()
     @State var data:Data?
@@ -18,10 +18,10 @@ struct MYpdf: View {
                 PDFKitRepresentedView(data!)
             }else{
                 ProgressView()
+                    .frame(width: 100, height: 100, alignment: .center)
             }
             
         }.onAppear{
-            print(url)
             repo.getDataFromURL(url: URL(string: url)!, complition: { progress in
                 self.data = progress
                 self.isDone = true
@@ -33,6 +33,6 @@ struct MYpdf: View {
 
 struct PDFView_Previews: PreviewProvider {
     static var previews: some View {
-        MYpdf(url: "")
+        ReferenceView(url: "")
     }
 }

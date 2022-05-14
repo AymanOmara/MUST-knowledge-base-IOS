@@ -15,3 +15,9 @@
 "prerequisite"="Prerequisite";
 "courseDescription"="Course Description";
 "references"="References";
+"settings"="Settings";
+"language"="Change Language";
+"darkmode"="Dark Mode";
+"appdata_section"="App Data";
+"clearalldata"="Clear All Data";
+

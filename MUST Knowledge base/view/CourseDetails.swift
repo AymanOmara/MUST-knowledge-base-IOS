@@ -44,7 +44,7 @@ struct CourseDetails: View {
             
             CourseDescription(courseDescription: course.courseDescription)
             Divider()
-            NavigationLink(LocalizedStringKey("references"), destination: MYpdf(url: course.refreces))
+            NavigationLink(LocalizedStringKey("references"), destination: ReferenceView(url: course.refreces))
                 .cornerRadius(20)
                 .foregroundColor(Color.white)
                 .frame(maxWidth: .infinity,maxHeight: 30)
