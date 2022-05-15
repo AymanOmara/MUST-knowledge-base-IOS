@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WelcomeView: View {
     @State var isAnimationActive = true
-    
+    @ObservedObject private var isDarkMode = UserSettings()
     var body: some View {
         VStack{
             if isAnimationActive{
@@ -19,12 +19,16 @@ struct WelcomeView: View {
             }
         }
         .onAppear {
+            changeAppearanceMode()
             DispatchQueue.main.asyncAfter(deadline: .now()+3) {
                 withAnimation{
                     isAnimationActive = false
                 }
             }
         }
+    }
+    func changeAppearanceMode(){
+        UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = isDarkMode.username ? .dark : .light
     }
     
 }

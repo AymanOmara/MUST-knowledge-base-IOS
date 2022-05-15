@@ -25,7 +25,8 @@ struct FavoriteView: View {
                 }
             }
         }
-        .navigationTitle("Favorite F")
+        .navigationTitle(LocalizedStringKey("Favorite"))
+
         .onAppear{
             viewModel.getAllCourses()
 //            isAnimated =  viewModel.isEmpty!

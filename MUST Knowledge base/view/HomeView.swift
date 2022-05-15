@@ -37,7 +37,7 @@ struct TabBarView:View{
                     
                 }.tag(3)
         }
-        .navigationTitle(selection == 1 ? "Courses" : selection == 2 ? "Favorite" : "Settings")
+        .navigationTitle(selection == 1 ? LocalizedStringKey("Home") : selection == 2 ? LocalizedStringKey("Favorite") : LocalizedStringKey("settings"))
 
     }
 }
@@ -61,7 +61,7 @@ struct HomeView: View {
                 })
             
         }
-//        .navigationTitle("Courses")
+        .navigationTitle(LocalizedStringKey("Home"))
         .alert(item:$viewModel.alertItem){ alert in
             Alert(title: alert.title, message: alert.body, dismissButton: alert.dissmissButton)
             
