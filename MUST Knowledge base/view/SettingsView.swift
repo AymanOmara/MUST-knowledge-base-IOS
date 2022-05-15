@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct SettingsView: View {
-//    @State private var isOn = false
+
     @ObservedObject private var isDarkMode = UserSettings()
     var body: some View {
         Form{
             Section("app language") {
                 Button(LocalizedStringKey("language")) {
-                    
+                    if isDarkMode.language == "en"{
+                        isDarkMode.language = "ar"
+                    }else{
+                        isDarkMode.language = "en"
+                    }
                 }
                 Button {
                     _isDarkMode.wrappedValue.username.toggle()
@@ -44,6 +48,8 @@ struct SettingsView: View {
     }
     func changeAppearanceMode(){
         UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = isDarkMode.username ? .dark : .light
+        
+        
     }
     
     
@@ -60,8 +66,14 @@ class UserSettings: ObservableObject {
             UserDefaults.standard.set(username, forKey: "username")
         }
     }
+    @Published var language :String{
+        didSet{
+            UserDefaults.standard.set(language, forKey: "language")
+        }
+    }
     
     init() {
         self.username = UserDefaults.standard.object(forKey: "username") as? Bool ?? false
+        self.language = UserDefaults.standard.string(forKey: "language") ?? "en"
     }
 }
