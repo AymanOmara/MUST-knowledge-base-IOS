@@ -11,7 +11,7 @@ struct FavoriteView: View {
     @ObservedObject private var viewModel = FavoriteViewModel()
 //    @State private var isAnimated = false
     var body: some View {
-        ZStack{
+        VStack{
             if viewModel.isEmpty!{
                 LottieView(fileName: "empty")
                 .frame(width: 300, height: 300, alignment: .center)
@@ -21,11 +21,11 @@ struct FavoriteView: View {
                 List(viewModel.courses,id:\.id) { item in
                     FavoriteCell(viewModel: viewModel, item: item)
                     
-                        .navigationTitle("Courses")
-                        .navigationBarTitleDisplayMode(.inline)
+
                 }
             }
         }
+        .navigationTitle("Favorite F")
         .onAppear{
             viewModel.getAllCourses()
 //            isAnimated =  viewModel.isEmpty!

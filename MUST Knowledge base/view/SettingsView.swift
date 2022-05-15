@@ -31,10 +31,10 @@ struct SettingsView: View {
                         .foregroundColor(Color.red)
                 }
             }
-            
-        }.navigationTitle(LocalizedStringKey("settings"))
-        
+        }
+        .navigationTitle("Settings s")
     }
+        
         
 }
 

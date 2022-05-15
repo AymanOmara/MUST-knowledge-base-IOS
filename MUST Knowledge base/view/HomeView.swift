@@ -8,28 +8,37 @@
 import SwiftUI
 
 struct TabBarView:View{
+    @State var selection = 1
+    @State private var title = ""
     var courses:[Course]
     var body: some View{
-        
+
         TabView{
             HomeView(courses: courses)
                 .tabItem {
                     Image(systemName: "house")
                     Text(LocalizedStringKey("Home"))
-                }
+
+                }.tag(1)
             
             FavoriteView()
                 .tabItem {
                     Image(systemName: "heart")
                     
                     Text(LocalizedStringKey("Favorite"))
-                }
+
+
+                }.tag(2)
             SettingsView()
                 .tabItem {
                     Image(systemName: "gearshape")
                     Text(LocalizedStringKey("settings"))
-                }
+
+                    
+                }.tag(3)
         }
+        .navigationTitle(selection == 1 ? "Courses" : selection == 2 ? "Favorite" : "Settings")
+
     }
 }
 
@@ -51,10 +60,8 @@ struct HomeView: View {
                     }.tint(Color.green)
                 })
             
-                .navigationTitle("Courses")
-                .navigationBarTitleDisplayMode(.inline)
         }
-
+//        .navigationTitle("Courses")
         .alert(item:$viewModel.alertItem){ alert in
             Alert(title: alert.title, message: alert.body, dismissButton: alert.dissmissButton)
             

@@ -15,8 +15,9 @@ struct MajorsView: View {
                 StringListView(title: item.majorName)
                 
             }
-            .navigationTitle("Majors")
+            
         }
+        .navigationTitle("Majors")
     }
 }
 
