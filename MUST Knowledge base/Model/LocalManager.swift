@@ -100,6 +100,23 @@ class LocalModel:BaseLocalModel{
         
         
     }
+    func removeAllFavoriteCourses(){
+        let featchRequest:NSFetchRequest<Item> = Item.fetchRequest()
+        do{
+            let data = try container.viewContext.fetch(featchRequest).publisher.map{(item)  in
+                
+                container.viewContext.delete(item)
+            
+//                return Course(courseName: item.name!, courseCode: item.id!, courseDescription: item.courseDescription!, level: item.level!, refreces: item.refreces!, preRequest: item.prerequisite!)
+                
+            }
+           try container.viewContext.save()
+//            promise(.success(data.sequence))
+        }catch{
+//            promise(.failure(error))
+        }
+        
+    }
     func removeCourseByID(courseIndex:Int){
         let featchRequest:NSFetchRequest<Item> = Item.fetchRequest()
         do{

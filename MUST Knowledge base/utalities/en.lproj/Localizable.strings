@@ -20,4 +20,5 @@
 "darkmode"="Dark Mode";
 "appdata_section"="App Data";
 "clearalldata"="Clear All Data";
-
+"submit_clearData"="Are you sure that you want to remove all data that will include your favorite & App settings";
+"yes_remove"="Submit";
