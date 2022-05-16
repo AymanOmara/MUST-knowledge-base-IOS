@@ -28,7 +28,7 @@ struct WelcomeView: View {
         }
     }
     func changeAppearanceMode(){
-        UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = isDarkMode.username ? .dark : .light
+        UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = isDarkMode.isDarkModeEnabled ? .dark : .light
     }
     
 }

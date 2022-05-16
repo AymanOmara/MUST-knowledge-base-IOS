@@ -21,13 +21,13 @@ struct SettingsView: View {
                     }
                 }
                 Button {
-                    _isDarkMode.wrappedValue.username.toggle()
+                    _isDarkMode.wrappedValue.isDarkModeEnabled.toggle()
                     changeAppearanceMode()
                     
                 } label: {
-                    Toggle(LocalizedStringKey("darkmode"), isOn: $isDarkMode.username)
+                    Toggle(LocalizedStringKey("darkmode"), isOn: $isDarkMode.isDarkModeEnabled)
                         .onTapGesture {
-                            _isDarkMode.wrappedValue.username.toggle()
+                            _isDarkMode.wrappedValue.isDarkModeEnabled.toggle()
                             changeAppearanceMode()
                             
                         }
@@ -47,7 +47,7 @@ struct SettingsView: View {
         .navigationTitle(LocalizedStringKey("settings"))
     }
     func changeAppearanceMode(){
-        UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = isDarkMode.username ? .dark : .light
+        UIApplication.shared.windows.first?.rootViewController?.view.overrideUserInterfaceStyle = isDarkMode.isDarkModeEnabled ? .dark : .light
         
         
     }
@@ -58,22 +58,5 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
-    }
-}
-class UserSettings: ObservableObject {
-    @Published var username: Bool {
-        didSet {
-            UserDefaults.standard.set(username, forKey: "username")
-        }
-    }
-    @Published var language :String{
-        didSet{
-            UserDefaults.standard.set(language, forKey: "language")
-        }
-    }
-    
-    init() {
-        self.username = UserDefaults.standard.object(forKey: "username") as? Bool ?? false
-        self.language = UserDefaults.standard.string(forKey: "language") ?? "en"
     }
 }
