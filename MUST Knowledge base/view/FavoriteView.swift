@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavoriteView: View {
     @ObservedObject private var viewModel = FavoriteViewModel()
-//    @State private var isAnimated = false
+
     var body: some View {
         VStack{
             if viewModel.isEmpty!{
@@ -29,13 +29,10 @@ struct FavoriteView: View {
 
         .onAppear{
             viewModel.getAllCourses()
-//            isAnimated =  viewModel.isEmpty!
         }
 
-
-
     }
-        
+    
 }
 
 struct FavoriteView_Previews: PreviewProvider {

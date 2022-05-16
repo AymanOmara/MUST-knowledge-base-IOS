@@ -45,7 +45,7 @@ struct FacultyView:View{
                     .padding(.horizontal,5)
                 Spacer()
                 
-                    .navigationBarHidden(true)
+                    
                 
                 ScrollView{
                     
@@ -56,9 +56,11 @@ struct FacultyView:View{
                     }.padding(.horizontal, 5)
                 }
             }
+            .navigationBarHidden(true)
         }
         
     }
+        
 }
 struct LottieAnimationView:View{
     var fileName:String
@@ -79,9 +81,9 @@ struct FacultyCell:View{
                 .frame(height: 120)
             Text(faculty.facultyName)
         }
-        .background(Color.white)
+        .background(Color("BackgroundColor"))
         .cornerRadius(8)
-        .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 2)
+        .shadow(color: Color.secondary.opacity(0.1), radius: 8, x: 0, y: 2)
         .padding(.horizontal,2)
         .background(
             NavigationLink(
