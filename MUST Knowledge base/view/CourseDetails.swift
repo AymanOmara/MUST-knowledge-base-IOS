@@ -45,10 +45,11 @@ struct CourseDetails: View {
             CourseDescription(courseDescription: course.courseDescription)
             Divider()
             NavigationLink(LocalizedStringKey("references"), destination: ReferenceView(url: course.refreces))
-                .cornerRadius(20)
+                
                 .foregroundColor(Color.white)
-                .frame(maxWidth: .infinity,maxHeight: 30)
+                .frame(maxWidth: .infinity,maxHeight: 40)
                 .background(Color.blue)
+                .cornerRadius(40)
                 .padding(.horizontal)
                 
             
@@ -64,11 +65,12 @@ struct CourseDescription:View{
     var courseDescription:String
     var body: some View{
         Text(courseDescription)
-            .cornerRadius(10)
+            
             .padding(.horizontal,8)
             .padding(.vertical,10)
             .background(.white)
-            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 2)
+            .cornerRadius(20)
+            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 2)
             
     }
 }
